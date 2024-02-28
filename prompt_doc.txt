@@ -1,0 +1,86 @@
+product_frida
+=====================================================================
+1.What is the Wholesale price & UPC code of Upside Down Peri Bottle - Pink
+%%%%%%
+SELECT `Wholesale Price`, `UPC Code`
+FROM product_frida
+WHERE `Sales Description` = 'Upside Down Peri Bottle - Pink'
+LIMIT 1;
+%%%%%%%%%
+2.What is the average weight of the products in pounds?
+%%%%%%%%%%
+SELECT AVG(`Weight`) AS `Average Weight in Pounds` FROM product_frida;
+%%%%%%%%%%%
+3.Which product has the highest MSRP (Manufacturer's Suggested Retail Price)?
+%%%%%%%%%%%%
+SELECT `ï»¿Name`, `MSRP (USD)` 
+FROM product_frida 
+ORDER BY CAST(REPLACE(`MSRP (USD)`, '$', '') AS DECIMAL(10,2)) DESC 
+LIMIT 1;
+%%%%%%%%%%%%%
+4.How many different countries are represented in the dataset?
+%%%%%%%%%%%%%
+SELECT DISTINCT `Country of Origin` 
+FROM product_frida;
+%%%%%%%%%%%%%%%
+5.Which product has the smallest dimensions (length * width * height)?
+%%%%%%%%%%%%%%%%
+SELECT `ï»¿Name`, `Product Packaged Length`, `Product Packaged Width`, `Product Packaged Height`
+FROM product_frida
+ORDER BY `Product Packaged Length` * `Product Packaged Width` * `Product Packaged Height`       
+LIMIT 1;
+%%%%%%%%%%%%%%%%%%
+6.What is the average minimum quantity required for purchase?
+%%%%%%%%%%%%%%%%%%%
+SELECT AVG(`Minimum Qty`) AS Average_Minimum_Quantity
+FROM product_frida;
+%%%%%%%%%%%%%%%%%%%%
+7.What is the difference in wholesale price between the Medifrida The Accu-Doser and the Nailfrida The Snipperclipper Set?
+%%%%%%%%%%%%%%%%%%%%
+SELECT `ï»¿Name`, `Wholesale Price`
+FROM product_frida
+WHERE `ï»¿Name` IN (100000012, 100000016)
+%%%%%%%%%%%%%%%%%%%%%%
+8.If a customer purchases 2 units of the Upside Down Peri Bottle - Pink and 1 unit of the Dermafrida The Skinsoother -2pk, how much will they pay in total at MSRP?
+%%%%%%%%%%%%%%%%%%%%%%
+SELECT `MSRP (USD)`, `Sales Description`
+FROM product_frida
+WHERE `Sales Description` IN ('Upside Down Peri Bottle - Pink', 'Dermafrida The Skinsoother -2pk')
+LIMIT 2;
+%%%%%%%%%%%%%%%%%%%%%%%
+9.Which product has the highest weight in pounds, and what is that weight?
+%%%%%%%%%%%%%%%%%%%%%%%%
+SELECT `ï»¿Name`, `Weight`
+FROM product_frida
+ORDER BY `Weight` DESC
+LIMIT 1;
+%%%%%%%%%%%%%%%%%%%%%%%
+10.Considering the minimum quantity required for each product, if a retailer wants to place orders for all items, how many units in total do they need to order?
+%%%%%%%%%%%%%%%%%%%%%%%%
+SELECT SUM(`Minimum Qty`) AS Total_Units
+FROM product_frida;
+%%%%%%%%%%%%%%%%%%%%%%%%
+11.Among the products manufactured in China, which one has the highest MSRP?
+Among the products manufactured in Thailand,, which one has the highest MSRP?
+%%%%%%%%%%%%%%%%%%%%%%%%
+SELECT `ï»¿Name`, `MSRP (USD)` 
+FROM product_frida
+WHERE `Country of Origin` = 'CN'
+ORDER BY CAST(REPLACE(`MSRP (USD)`, '$', '') AS DECIMAL(10,2)) DESC             (Taking CN as China)
+LIMIT 1;
+%%%%%%%%%%%%%%%%%%%%%%%%%
+12.If a customer buys 3 units of the S-Curved Nail Files (5pack) and 2 units of the Medifrida The Accu-Doser, what is their total cost at wholesale price?
+%%%%%%%%%%%%%%%%%%%%%%%%%
+SELECT `Wholesale Price`
+FROM product_frida
+WHERE `Sales Description` = 'S-Curved Nail Files (5pack)'
+   OR `Sales Description` = 'Medifrida The Accu-Doser'
+LIMIT 2;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+13.If a retailer purchases the minimum quantity of each product, how much will they spend in total at MSRP?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+SELECT `Minimum Qty`, `MSRP (USD)` 
+FROM product_frida
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
